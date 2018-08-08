@@ -1,5 +1,7 @@
 # Small area estimation for policy makers (SMAP)
 
+This repository contains R scripts en functions (slightly modified) belonging to the paper:
+
 Estimating the prevalence of 26 health-related indicators at neighbourhood level in the Netherlands using structured additive regression. Van de Kassteele J, Zwakhals L, Breugelmans O, Ameling C, Van den Brink C. *International Journal of Health Geographics*, 2017, **16**(1), 23. https://ij-healthgeographics.biomedcentral.com/articles/10.1186/s12942-017-0097-5
 
 ## Background
