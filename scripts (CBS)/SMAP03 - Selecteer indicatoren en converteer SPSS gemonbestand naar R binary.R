@@ -1,6 +1,6 @@
 #
 # Selecteren gezondheidsindicatoren
-# Converteer SPSS gemondbestand naar R binary
+# Converteer SPSS gemonbestand naar R binary
 #
 
 #
