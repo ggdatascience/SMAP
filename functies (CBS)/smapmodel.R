@@ -2,7 +2,7 @@
 # Als je je model wilt herformuleren, bijvoorbeeld met een extra voorspeller,
 # doe dat dan hieronder in de modelformule
 
-smapmodel <- function(rin, ind, buffer = 5000, return.model.object = FALSE) {
+smapmodel <- function(rin, ind, buffer = 10000, return.model.object = FALSE) {
 
   # Input:
   # rin          = lijst met rin.fit, rin.pred en validatie indicator
@@ -77,7 +77,7 @@ smapmodel <- function(rin, ind, buffer = 5000, return.model.object = FALSE) {
     # Een paar zaken aangaande de modelformulatie:
     # - Alle numerieke variabelen gaan erin als P-spline met 10 refdf, behalve hhgrootte (refdf = 5)
     # - Alle categorische variabelen gaan erin als random effect
-    # - Buurt gaat erin als ruimtelijke gecorreleerd r.e. met refdf 10x zo klein als het aantal buurten
+    # - Buurt gaat erin als ruimtelijke gecorreleerd r.e. met refdf 5x zo klein als het aantal buurten
     #   Meer duurt alleen maar langer en is totaal overbodig
     # - Zowel de P-splines als random effecten zorgen voor regularisatie (smoothing) bij te weinig waarnemingen
     # - Met select = TRUE worden smooths (spline of r.e.) die er niet toe doen op 0 gezet
