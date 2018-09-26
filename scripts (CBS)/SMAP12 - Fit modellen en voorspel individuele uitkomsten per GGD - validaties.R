@@ -1,13 +1,15 @@
+# SMAP - Small area estimation for policy makers
+# Delen van dit script mogen gekopieerd worden voor eigen gebruik
+# onder vermelding van de auteur en een referentie naar het SMAP artikel in IJHG (2017)
+# Auteur: Jan van de Kassteele - RIVM
+
 #
 # Fit modellen en voorspel individuele uitkomsten per GGD - validaties
 #
 
 #
-# Init ----
+# Init
 #
-
-# Extra library path
-.libPaths("G:/8_Utilities/R/Lib3")
 
 # Laad packages
 library(data.table)
@@ -19,7 +21,7 @@ source("functies/selectrin.R")
 source("functies/smapmodel.R")
 
 #
-# Lees data ----
+# Lees data
 #
 
 # Lees R binary pop.data
@@ -32,7 +34,7 @@ load(file = "data/gemon/gemon2016_schoon.bin")
 load(file = "data/gebieden/cbs_buurt_2016.bin")
 
 #
-# Fit modellen ----
+# Fit modellen
 #
 
 # Deze indicatoren voor alle leeftijden
@@ -43,7 +45,7 @@ rin <- selectrin(subset = NULL, validatie = TRUE)
 smapmodel(rin = rin, ind = "drinker")
 smapmodel(rin = rin, ind = "drinker_zwaar")
 smapmodel(rin = rin, ind = "drinker_overm")
-smapmodel(rin = rin, ind = "drinker_overm_oud", buffer = 10000)
+smapmodel(rin = rin, ind = "drinker_overm_oud")
 smapmodel(rin = rin, ind = "richtlijn_alcohol")
 smapmodel(rin = rin, ind = "overgewicht")
 smapmodel(rin = rin, ind = "obesitas")
@@ -60,14 +62,15 @@ smapmodel(rin = rin, ind = "bep_minst_een")
 smapmodel(rin = rin, ind = "regie_leven_matig")
 smapmodel(rin = rin, ind = "angstdep_matig")
 smapmodel(rin = rin, ind = "angstdep_hoog")
-smapmodel(rin = rin, ind = "mantelzorger")
+smapmodel(rin = rin, ind = "richtlijn_beweeg")
 smapmodel(rin = rin, ind = "sporter")
 smapmodel(rin = rin, ind = "eenzaam")
+smapmodel(rin = rin, ind = "eenzaam_ernstig")
 smapmodel(rin = rin, ind = "eenzaam_emo")
 smapmodel(rin = rin, ind = "eenzaam_soc")
-smapmodel(rin = rin, ind = "eenzaam_ernstig")
 smapmodel(rin = rin, ind = "vrwwerk")
 smapmodel(rin = rin, ind = "rondkmoeite_12mnd")
+smapmodel(rin = rin, ind = "mantelzorger")
 
 # Mantelzorg voor 65+
 rin <- selectrin(subset = "leeftijd %in% 65:120", validatie = TRUE)
@@ -82,7 +85,7 @@ gemon.data[, eenzaam_ernstig_75p := eenzaam_ernstig]
 gemon.data[, eenzaam_emo_75p     := eenzaam_emo]
 gemon.data[, eenzaam_soc_75p     := eenzaam_soc]
 rin <- selectrin(subset = "leeftijd %in% 75:120", validatie = TRUE)
-smapmodel(rin = rin, ind = "eenzaam_75p", buffer = 10000)
-smapmodel(rin = rin, ind = "eenzaam_ernstig_75p", buffer = 10000)
-smapmodel(rin = rin, ind = "eenzaam_emo_75p", buffer = 10000)
-smapmodel(rin = rin, ind = "eenzaam_soc_75p", buffer = 10000)
+smapmodel(rin = rin, ind = "eenzaam_75p")
+smapmodel(rin = rin, ind = "eenzaam_ernstig_75p")
+smapmodel(rin = rin, ind = "eenzaam_emo_75p")
+smapmodel(rin = rin, ind = "eenzaam_soc_75p")

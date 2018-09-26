@@ -1,3 +1,8 @@
+# SMAP - Small area estimation for policy makers
+# Delen van dit script mogen gekopieerd worden voor eigen gebruik
+# onder vermelding van de auteur en een referentie naar het SMAP artikel in IJHG (2017)
+# Auteur: Jan van de Kassteele - RIVM
+
 # Functie om individuele predicties te aggregeren naar buurt, wijk en gemeente
 # Uitvoer wordt weggeschreven als tab-gescheiden tekstbestand
 

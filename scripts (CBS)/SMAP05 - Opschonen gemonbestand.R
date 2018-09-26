@@ -1,27 +1,29 @@
+# SMAP - Small area estimation for policy makers
+# Delen van dit script mogen gekopieerd worden voor eigen gebruik
+# onder vermelding van de auteur en een referentie naar het SMAP artikel in IJHG (2017)
+# Auteur: Jan van de Kassteele - RIVM
+
 #
-# Opschonen gemonbestand ----
+# Opschonen gemonbestand
 #
 
 #
 # Init
 #
 
-# Extra library path
-.libPaths("G:/8_Utilities/R/Lib3")
-
 # Laad packages
 library(data.table)
 library(magrittr)
 
 #
-# Lees gemon data ----
+# Lees gemon data
 #
 
 # Lees R binary gemon.data
 load(file = "data/gemon/gemon2016.bin")
 
 #
-# Hernoem variabelen ----
+# Hernoem variabelen
 #
 
 # Check dat volgorde van oude- en nieuwe namen overeenkomen
@@ -33,7 +35,7 @@ names(gemon.data)
 # Hernoem
 gemon.data %>% setnames(
   old = c(
-    "RINPersoon",
+    "RINPERSOON",
     "LFALA201", "LFALA213", "LFALS231", "LFALS230", "LFALS232",
     "AGGWS204", "AGGWS205",
     "LFRKA205",
@@ -42,13 +44,13 @@ gemon.data %>% setnames(
     "LGBPS203", "LGBPS204", "LGBPS205", "LGBPS209",
     "GGRLS203",
     "GGADA202", "GGADA203",
-    "RLBEW", "FITNORM", "COMBNORM", "SPORTER",
+    "KI_RLBEW2017", "KIsporter",
     "GGEES217", "GGEES209", "GGEES215", "GGEES216",
     "MMVWA201", "MMIKA201",
     "MCMZGS203", "MCMZOS304", "MCMZOS305"),
   new = c(
     "rinpersoon",
-    "drinker", "drinker_zwaar","drinker_overm", "drinker_overm_oud", "richtlijn_alcohol",
+    "drinker", "drinker_zwaar", "drinker_overm", "drinker_overm_oud", "richtlijn_alcohol",
     "overgewicht", "obesitas",
     "roker",
     "ervgez_goed",
@@ -56,7 +58,7 @@ gemon.data %>% setnames(
     "bep_gehoor", "bep_gezicht", "beb_mobiel", "bep_minst_een",
     "regie_leven_matig",
     "angstdep_matig", "angstdep_hoog",
-    "norm_beweeg", "norm_fit", "norm_combi", "sporter",
+    "richtlijn_beweeg", "sporter",
     "eenzaam", "eenzaam_ernstig", "eenzaam_emo", "eenzaam_soc",
     "vrwwerk", "rondkmoeite_12mnd",
     "mantelzorger", "ontvmz_12mnd_65p", "ontvmz_nu_65p"))
@@ -65,7 +67,7 @@ gemon.data %>% setnames(
 names(gemon.data)
 
 #
-# Hercodeer variabelen ----
+# Hercodeer variabelen
 #
 
 # Bekijk de variabelen om te zien wat 0 en 1 moeten zijn:
@@ -98,16 +100,14 @@ gemon.data[, bep_minst_een     := bep_minst_een     %>% as.integer %>% subtract(
 gemon.data[, regie_leven_matig := regie_leven_matig %>% as.integer %>% subtract(1) %>% ifelse(. == 2, yes = NA, no = .)]
 gemon.data[, angstdep_matig    := angstdep_matig    %>% as.integer %>% subtract(1) %>% ifelse(. == 2, yes = NA, no = .)]
 gemon.data[, angstdep_hoog     := angstdep_hoog     %>% as.integer %>% subtract(1) %>% ifelse(. == 2, yes = NA, no = .)]
-gemon.data[, mantelzorger      := mantelzorger      %>% as.integer %>% subtract(1) %>% ifelse(. == 2, yes = NA, no = .)]
-gemon.data[, norm_beweeg       := norm_beweeg       %>% as.integer %>% subtract(1) %>% ifelse(. == 2, yes = NA, no = .)]
-gemon.data[, norm_fit          := norm_fit          %>% as.integer %>% subtract(1) %>% ifelse(. == 2, yes = NA, no = .)]
-gemon.data[, norm_combi        := norm_combi        %>% as.integer %>% subtract(1) %>% ifelse(. == 2, yes = NA, no = .)]
+gemon.data[, richtlijn_beweeg  := richtlijn_beweeg  %>% as.integer %>% subtract(1) %>% ifelse(. == 2, yes = NA, no = .)]
 gemon.data[, sporter           := sporter           %>% as.integer %>% subtract(1) %>% ifelse(. == 2, yes = NA, no = .)]
 gemon.data[, eenzaam           := eenzaam           %>% as.integer %>% subtract(1) %>% ifelse(. == 2, yes = NA, no = .)]
 gemon.data[, eenzaam_emo       := eenzaam_emo       %>% as.integer %>% subtract(1) %>% ifelse(. == 2, yes = NA, no = .)]
 gemon.data[, eenzaam_soc       := eenzaam_soc       %>% as.integer %>% subtract(1) %>% ifelse(. == 2, yes = NA, no = .)]
 gemon.data[, vrwwerk           := vrwwerk           %>% as.integer %>% subtract(1) %>% ifelse(. == 2, yes = NA, no = .)]
 gemon.data[, rondkmoeite_12mnd := rondkmoeite_12mnd %>% as.integer %>% subtract(1) %>% ifelse(. == 2, yes = NA, no = .)]
+gemon.data[, mantelzorger      := mantelzorger      %>% as.integer %>% subtract(1) %>% ifelse(. == 2, yes = NA, no = .)]
 gemon.data[, ontvmz_12mnd_65p  := ontvmz_12mnd_65p  %>% as.integer %>% subtract(1) %>% ifelse(. == 2, yes = NA, no = .)]
 gemon.data[, ontvmz_nu_65p     := ontvmz_nu_65p     %>% as.integer %>% subtract(1) %>% ifelse(. == 2, yes = NA, no = .)]
 
@@ -123,7 +123,7 @@ gemon.data[,
     ifelse(. == 3, yes = NA, no = .)]
 
 #
-# Verwijder overbodige records ----
+# Verwijder overbodige records
 #
 
 # Er zijn records met duplicaten van rinpersoon

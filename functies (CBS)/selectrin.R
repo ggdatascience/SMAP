@@ -1,3 +1,8 @@
+# SMAP - Small area estimation for policy makers
+# Delen van dit script mogen gekopieerd worden voor eigen gebruik
+# onder vermelding van de auteur en een referentie naar het SMAP artikel in IJHG (2017)
+# Auteur: Jan van de Kassteele - RIVM
+
 # Functie om rinpersonen te selecteren op basis van bijvoorbeeld leeftijd
 # Ook kun je aangeven of je gemon.data wilt ophakken in een training- en testset
 

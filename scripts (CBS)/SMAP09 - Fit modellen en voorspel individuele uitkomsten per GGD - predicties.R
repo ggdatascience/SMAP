@@ -1,13 +1,15 @@
+# SMAP - Small area estimation for policy makers
+# Delen van dit script mogen gekopieerd worden voor eigen gebruik
+# onder vermelding van de auteur en een referentie naar het SMAP artikel in IJHG (2017)
+# Auteur: Jan van de Kassteele - RIVM
+
 #
 # Fit modellen en voorspel individuele uitkomsten per GGD - predicties
 #
 
 #
-# Init ----
+# Init
 #
-
-# Extra library path
-.libPaths("G:/8_Utilities/R/Lib3")
 
 # Laad packages
 library(data.table)
@@ -19,7 +21,7 @@ source("functies/selectrin.R")
 source("functies/smapmodel.R")
 
 #
-# Lees data ----
+# Lees data
 #
 
 # Lees R binary pop.data
@@ -32,7 +34,7 @@ load(file = "data/gemon/gemon2016_schoon.bin")
 load(file = "data/gebieden/cbs_buurt_2016.bin")
 
 #
-# Fit modellen ----
+# Fit modellen
 #
 
 # We krijgen uiteindelijk per indicator per GGD een los bestandje met:
@@ -71,7 +73,7 @@ smapmodel(rin = rin, ind = "bep_minst_een")
 smapmodel(rin = rin, ind = "regie_leven_matig")
 smapmodel(rin = rin, ind = "angstdep_matig")
 smapmodel(rin = rin, ind = "angstdep_hoog")
-smapmodel(rin = rin, ind = "mantelzorger")
+smapmodel(rin = rin, ind = "richtlijn_beweeg")
 smapmodel(rin = rin, ind = "sporter")
 smapmodel(rin = rin, ind = "eenzaam")
 smapmodel(rin = rin, ind = "eenzaam_ernstig")
@@ -79,6 +81,7 @@ smapmodel(rin = rin, ind = "eenzaam_emo")
 smapmodel(rin = rin, ind = "eenzaam_soc")
 smapmodel(rin = rin, ind = "vrwwerk")
 smapmodel(rin = rin, ind = "rondkmoeite_12mnd")
+smapmodel(rin = rin, ind = "mantelzorger")
 
 # Mantelzorg voor 65+
 rin <- selectrin(subset = "leeftijd %in% 65:120", validatie = FALSE)

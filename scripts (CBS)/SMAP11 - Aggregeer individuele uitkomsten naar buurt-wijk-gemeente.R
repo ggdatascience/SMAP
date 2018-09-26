@@ -1,13 +1,15 @@
+# SMAP - Small area estimation for policy makers
+# Delen van dit script mogen gekopieerd worden voor eigen gebruik
+# onder vermelding van de auteur en een referentie naar het SMAP artikel in IJHG (2017)
+# Auteur: Jan van de Kassteele - RIVM
+
 #
 # Aggregeer individuele uitkomsten naar buurt-wijk-gemeente 
 #
 
 #
-# Init ----
+# Init
 #
-
-# Extra library path
-.libPaths("G:/8_Utilities/R/Lib3")
 
 # Laad packages
 library(data.table)
@@ -17,14 +19,14 @@ library(magrittr)
 source("functies/ind2buwkgm.R")
 
 #
-# Lees data ----
+# Lees data
 #
 
 # Lees R binary pop.data
 load(file = "data/populatie/SMAP2016_populatie_schoon_volledig_extra.bin")
 
 #
-# Aggregeer individuele uitkomsten ----
+# Aggregeer individuele uitkomsten
 #
 
 ind2buwkgm(ind = "drinker")
@@ -47,7 +49,7 @@ ind2buwkgm(ind = "bep_minst_een")
 ind2buwkgm(ind = "regie_leven_matig")
 ind2buwkgm(ind = "angstdep_matig")
 ind2buwkgm(ind = "angstdep_hoog")
-ind2buwkgm(ind = "mantelzorger")
+ind2buwkgm(ind = "richtlijn_beweeg")
 ind2buwkgm(ind = "sporter")
 ind2buwkgm(ind = "eenzaam")
 ind2buwkgm(ind = "eenzaam_ernstig")
@@ -59,5 +61,6 @@ ind2buwkgm(ind = "eenzaam_emo_75p")
 ind2buwkgm(ind = "eenzaam_soc_75p")
 ind2buwkgm(ind = "vrwwerk")
 ind2buwkgm(ind = "rondkmoeite_12mnd")
+ind2buwkgm(ind = "mantelzorger")
 ind2buwkgm(ind = "ontvmz_12mnd_65p")
 ind2buwkgm(ind = "ontvmz_nu_65p")

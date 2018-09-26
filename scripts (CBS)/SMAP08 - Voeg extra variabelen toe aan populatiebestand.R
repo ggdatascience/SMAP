@@ -1,3 +1,8 @@
+# SMAP - Small area estimation for policy makers
+# Delen van dit script mogen gekopieerd worden voor eigen gebruik
+# onder vermelding van de auteur en een referentie naar het SMAP artikel in IJHG (2017)
+# Auteur: Jan van de Kassteele - RIVM
+
 #
 # Toevoegen extra variabelen aan populatiebestand
 #
@@ -8,9 +13,6 @@
 #
 # Init
 #
-
-# Extra library path
-.libPaths("G:/8_Utilities/R/Lib3")
 
 # Laad packages
 library(data.table)

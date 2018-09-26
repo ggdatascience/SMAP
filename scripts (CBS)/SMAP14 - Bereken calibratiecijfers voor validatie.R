@@ -1,13 +1,15 @@
+# SMAP - Small area estimation for policy makers
+# Delen van dit script mogen gekopieerd worden voor eigen gebruik
+# onder vermelding van de auteur en een referentie naar het SMAP artikel in IJHG (2017)
+# Auteur: Jan van de Kassteele - RIVM
+
 #
 # Bereken calibratiecijfers voor validatie
 #
 
 #
-# Init ----
+# Init
 #
-
-# Extra library path
-.libPaths("G:/8_Utilities/R/Lib3")
 
 # Laad packages
 library(data.table)
@@ -17,14 +19,14 @@ library(magrittr)
 source("functies/calibratie.R")
 
 #
-# Bereken calibratiecijfers ----
+# Bereken calibratiecijfers
 #
 
 calibratie(ind = "drinker")
 calibratie(ind = "drinker_zwaar")
+calibratie(ind = "richtlijn_alcohol")
 calibratie(ind = "drinker_overm")
 calibratie(ind = "drinker_overm_oud")
-calibratie(ind = "richtlijn_alcohol")
 calibratie(ind = "overgewicht")
 calibratie(ind = "obesitas")
 calibratie(ind = "roker")
@@ -40,7 +42,7 @@ calibratie(ind = "bep_minst_een")
 calibratie(ind = "regie_leven_matig")
 calibratie(ind = "angstdep_matig")
 calibratie(ind = "angstdep_hoog")
-calibratie(ind = "mantelzorger")
+calibratie(ind = "richtlijn_beweeg")
 calibratie(ind = "sporter")
 calibratie(ind = "eenzaam")
 calibratie(ind = "eenzaam_ernstig")
@@ -52,5 +54,6 @@ calibratie(ind = "eenzaam_emo_75p")
 calibratie(ind = "eenzaam_soc_75p")
 calibratie(ind = "vrwwerk")
 calibratie(ind = "rondkmoeite_12mnd")
+calibratie(ind = "mantelzorger")
 calibratie(ind = "ontvmz_12mnd_65p")
 calibratie(ind = "ontvmz_nu_65p")

@@ -1,13 +1,15 @@
+# SMAP - Small area estimation for policy makers
+# Delen van dit script mogen gekopieerd worden voor eigen gebruik
+# onder vermelding van de auteur en een referentie naar het SMAP artikel in IJHG (2017)
+# Auteur: Jan van de Kassteele - RIVM
+
 #
-# Imputeren populatiebestand ----
+# Imputeren populatiebestand
 #
 
 #
 # Init
 #
-
-# Extra library path
-.libPaths("G:/8_Utilities/R/Lib3")
 
 # Laad packages
 library(data.table)
@@ -21,7 +23,7 @@ source("functies/varimportance.R")
 source("functies/impute.R")
 
 #
-# Lees data ----
+# Lees data
 #
 
 # Lees R binary pop.data
@@ -32,7 +34,7 @@ load(file = "data/populatie/SMAP2016_populatie_schoon.bin")
 load(file = "data/gebieden/cbs_buurt_2016.bin")
 
 #
-# Voorbereidend werk ter imputatie ----
+# Voorbereidend werk ter imputatie
 #
 
 # Set seed
@@ -57,7 +59,7 @@ pop.data.sub <- pop.data[,
     size = 50000))
 
 #
-# Inspecteer welke variabelen voorspellend zijn ----
+# Inspecteer welke variabelen voorspellend zijn
 #
 
 # Inspectie gaat met variable importance plot uit randomForest package
@@ -138,7 +140,7 @@ pop.data.sub <- pop.data[,
 #   path = "resultaten/variable importance plots")
 
 #
-# Imputateer populatiekarakteristieken ----
+# Imputateer populatiekarakteristieken
 #
 
 # Grasadder:
@@ -242,7 +244,7 @@ pop.data <- impute(
 pop.data <- subset(pop.data, select = -c(hhinkomen.cat, hhvermogen.cat))
 
 #
-# Imputeer buurtcodes en XY coordinaten ----
+# Imputeer buurtcodes en XY coordinaten
 #
 
 # Op basis van populatiekenmerken gaan we per gemeente 'uitrekenen' wat de meest waarschijnlijke buurt is

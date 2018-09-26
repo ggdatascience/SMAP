@@ -1,13 +1,15 @@
+# SMAP - Small area estimation for policy makers
+# Delen van dit script mogen gekopieerd worden voor eigen gebruik
+# onder vermelding van de auteur en een referentie naar het SMAP artikel in IJHG (2017)
+# Auteur: Jan van de Kassteele - RIVM
+
 #
 # Kaarten
 #
 
 #
-# Init ----
+# Init
 #
-
-# Extra library path
-.libPaths("G:/8_Utilities/R/Lib3")
 
 # Laad packages
 library(sf)
@@ -18,7 +20,7 @@ library(RColorBrewer)
 source("functies/kaart.R")
 
 #
-# Lees data ----
+# Lees data
 #
 
 # Lees buurt, wijk en gemeente geometrieen
@@ -32,21 +34,21 @@ wk.sf <- wk.sf %>% filter(statnaam != "") %>% select(statcode) %>% transmute(wk_
 gm.sf <- gm.sf %>% filter(statnaam != "") %>% select(statcode) %>% transmute(gm_code = statcode)
 
 #
-# Kaart per gekozen indicator ----
+# Kaart per gekozen indicator
 #
 
 # Stel palet in
 pal <- colorRampPalette(colors = brewer.pal(name = "YlGnBu", n = 9))
 
 #
-# Buurt ----
+# Buurt
 #
 
 kaart(niveau = "bu", pal = pal, ind = "drinker")
 kaart(niveau = "bu", pal = pal, ind = "drinker_zwaar")
 kaart(niveau = "bu", pal = pal, ind = "drinker_overm")
-kaart(niveau = "bu", pal = pal, ind = "richtlijn_alcohol")
 kaart(niveau = "bu", pal = pal, ind = "drinker_overm_oud")
+kaart(niveau = "bu", pal = pal, ind = "richtlijn_alcohol")
 kaart(niveau = "bu", pal = pal, ind = "overgewicht")
 kaart(niveau = "bu", pal = pal, ind = "obesitas")
 kaart(niveau = "bu", pal = pal, ind = "roker")
@@ -62,7 +64,7 @@ kaart(niveau = "bu", pal = pal, ind = "bep_minst_een")
 kaart(niveau = "bu", pal = pal, ind = "regie_leven_matig")
 kaart(niveau = "bu", pal = pal, ind = "angstdep_matig")
 kaart(niveau = "bu", pal = pal, ind = "angstdep_hoog")
-kaart(niveau = "bu", pal = pal, ind = "mantelzorger")
+kaart(niveau = "bu", pal = pal, ind = "richtlijn_beweeg")
 kaart(niveau = "bu", pal = pal, ind = "sporter")
 kaart(niveau = "bu", pal = pal, ind = "eenzaam")
 kaart(niveau = "bu", pal = pal, ind = "eenzaam_ernstig")
@@ -74,18 +76,19 @@ kaart(niveau = "bu", pal = pal, ind = "eenzaam_emo_75p")
 kaart(niveau = "bu", pal = pal, ind = "eenzaam_soc_75p")
 kaart(niveau = "bu", pal = pal, ind = "vrwwerk")
 kaart(niveau = "bu", pal = pal, ind = "rondkmoeite_12mnd")
+kaart(niveau = "bu", pal = pal, ind = "mantelzorger")
 kaart(niveau = "bu", pal = pal, ind = "ontvmz_12mnd_65p")
 kaart(niveau = "bu", pal = pal, ind = "ontvmz_nu_65p")
 
 #
-# Wijk ----
+# Wijk
 #
 
 kaart(niveau = "wk", pal = pal, ind = "drinker")
 kaart(niveau = "wk", pal = pal, ind = "drinker_zwaar")
 kaart(niveau = "wk", pal = pal, ind = "drinker_overm")
-kaart(niveau = "wk", pal = pal, ind = "richtlijn_alcohol")
 kaart(niveau = "wk", pal = pal, ind = "drinker_overm_oud")
+kaart(niveau = "wk", pal = pal, ind = "richtlijn_alcohol")
 kaart(niveau = "wk", pal = pal, ind = "overgewicht")
 kaart(niveau = "wk", pal = pal, ind = "obesitas")
 kaart(niveau = "wk", pal = pal, ind = "roker")
@@ -101,7 +104,7 @@ kaart(niveau = "wk", pal = pal, ind = "bep_minst_een")
 kaart(niveau = "wk", pal = pal, ind = "regie_leven_matig")
 kaart(niveau = "wk", pal = pal, ind = "angstdep_matig")
 kaart(niveau = "wk", pal = pal, ind = "angstdep_hoog")
-kaart(niveau = "wk", pal = pal, ind = "mantelzorger")
+kaart(niveau = "wk", pal = pal, ind = "richtlijn_beweeg")
 kaart(niveau = "wk", pal = pal, ind = "sporter")
 kaart(niveau = "wk", pal = pal, ind = "eenzaam")
 kaart(niveau = "wk", pal = pal, ind = "eenzaam_ernstig")
@@ -113,11 +116,12 @@ kaart(niveau = "wk", pal = pal, ind = "eenzaam_emo_75p")
 kaart(niveau = "wk", pal = pal, ind = "eenzaam_soc_75p")
 kaart(niveau = "wk", pal = pal, ind = "vrwwerk")
 kaart(niveau = "wk", pal = pal, ind = "rondkmoeite_12mnd")
+kaart(niveau = "wk", pal = pal, ind = "mantelzorger")
 kaart(niveau = "wk", pal = pal, ind = "ontvmz_12mnd_65p")
 kaart(niveau = "wk", pal = pal, ind = "ontvmz_nu_65p")
 
 #
-# Gemeente ----
+# Gemeente
 #
 
 kaart(niveau = "gm", pal = pal, ind = "drinker")
@@ -140,7 +144,7 @@ kaart(niveau = "gm", pal = pal, ind = "bep_minst_een")
 kaart(niveau = "gm", pal = pal, ind = "regie_leven_matig")
 kaart(niveau = "gm", pal = pal, ind = "angstdep_matig")
 kaart(niveau = "gm", pal = pal, ind = "angstdep_hoog")
-kaart(niveau = "gm", pal = pal, ind = "mantelzorger")
+kaart(niveau = "gm", pal = pal, ind = "richtlijn_beweeg")
 kaart(niveau = "gm", pal = pal, ind = "sporter")
 kaart(niveau = "gm", pal = pal, ind = "eenzaam")
 kaart(niveau = "gm", pal = pal, ind = "eenzaam_ernstig")
@@ -152,5 +156,6 @@ kaart(niveau = "gm", pal = pal, ind = "eenzaam_emo_75p")
 kaart(niveau = "gm", pal = pal, ind = "eenzaam_soc_75p")
 kaart(niveau = "gm", pal = pal, ind = "vrwwerk")
 kaart(niveau = "gm", pal = pal, ind = "rondkmoeite_12mnd")
+kaart(niveau = "gm", pal = pal, ind = "mantelzorger")
 kaart(niveau = "gm", pal = pal, ind = "ontvmz_12mnd_65p")
 kaart(niveau = "gm", pal = pal, ind = "ontvmz_nu_65p")

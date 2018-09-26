@@ -1,3 +1,8 @@
+# SMAP - Small area estimation for policy makers
+# Delen van dit script mogen gekopieerd worden voor eigen gebruik
+# onder vermelding van de auteur en een referentie naar het SMAP artikel in IJHG (2017)
+# Auteur: Jan van de Kassteele - RIVM
+
 # Functie om calibratiecijfers te berekenen
 # De voorspelde prevalenties worden opgehak in klassen (op basis van quantiles)
 # Per klasse wordt voorspelde prevalentie gemiddeld, alsmede de waargenomen uitkomst

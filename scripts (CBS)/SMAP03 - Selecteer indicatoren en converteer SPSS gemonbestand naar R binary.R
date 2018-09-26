@@ -1,14 +1,16 @@
+# SMAP - Small area estimation for policy makers
+# Delen van dit script mogen gekopieerd worden voor eigen gebruik
+# onder vermelding van de auteur en een referentie naar het SMAP artikel in IJHG (2017)
+# Auteur: Jan van de Kassteele - RIVM
+
 #
 # Selecteren gezondheidsindicatoren
-# Converteer SPSS gemonbestand naar R binary
+# Converteer SPSS gemondbestand naar R binary
 #
 
 #
 # Init
 #
-
-# Extra library path
-.libPaths("G:/8_Utilities/R/Lib3")
 
 # Laad packages
 library(foreign)
@@ -21,7 +23,7 @@ library(magrittr)
 
 # Lees gemon data (duurt lang!)
 # Je kunt de warnings negeren
-gemon.data <- read.spss(file = "G:/1_MicroData/GEMON/2016/GEZOMONITOR2016V1.SAV") %>% 
+gemon.data <- read.spss(file = "G:/GezondheidWelzijn/GEMON/2016/GEZOMONITOR2016V2.SAV") %>% 
   as.data.table
 
 #
@@ -31,10 +33,10 @@ gemon.data <- read.spss(file = "G:/1_MicroData/GEMON/2016/GEZOMONITOR2016V1.SAV"
 
 # Maak selectie
 gemon.data <- gemon.data[, .(
-  # RINPersoon hebben we altijd nodig voor de koppeling met het populatiebestand
-  RINPersoon,
+  # RINPERSOON hebben we altijd nodig voor de koppeling met het populatiebestand
+  RINPERSOON,
   # Indicatoren SMAP2016
-  LFALA201, LFALA213, LFALS232, LFALS230, LFALS231,
+  LFALA201, LFALA213, LFALS231, LFALS230, LFALS232,
   AGGWS204, AGGWS205,
   LFRKA205,
   KLGGA208,
@@ -42,23 +44,22 @@ gemon.data <- gemon.data[, .(
   LGBPS203, LGBPS204, LGBPS205, LGBPS209,
   GGRLS203,
   GGADA202, GGADA203,
-  MCMZGS203,
-  RLBEW, FITNORM, COMBNORM, SPORTER,
+  KI_RLBEW2017, KIsporter,
   GGEES217, GGEES209, GGEES215, GGEES216,
   MMVWA201,
   MMIKA201,
-  MCMZOS304, MCMZOS305
+  MCMZGS203, MCMZOS304, MCMZOS305
 )]
 
 #
 # Enkele kleine aanpassingen aan gemon.data
 #
 
-# Converteer RINPersoon naar integer (was character)
-gemon.data[, RINPersoon := as.integer(RINPersoon)]
+# Converteer RINPERSOON naar integer (was character)
+gemon.data[, RINPERSOON := as.integer(RINPERSOON)]
 
-# Set key RINPersoon
-gemon.data %>% setkey(RINPersoon)
+# Set key RINPERSOON
+gemon.data %>% setkey(RINPERSOON)
 
 #
 # Bewaar gemon.data als R binary
