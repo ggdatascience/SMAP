@@ -19,7 +19,6 @@ rfparallel <- function(formula, data, ntree = 200, ncores = 4, importance = FALS
   
   # Maak cluster met ncores nodes (CBS computer heeft 4 CPU's)
   cl <- makeCluster(ncores)
-  clusterEvalQ(cl, expr = .libPaths("G:/8_Utilities/R/Lib3"))
   registerDoParallel(cl)
   
   # Fit Random Forest model aan data
